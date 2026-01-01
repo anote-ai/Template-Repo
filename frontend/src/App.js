@@ -12,15 +12,18 @@ function App() {
   
   return (
     <div className="App">
-      {isDashboard ? (
-        <Router>
-          <Dashboard />
-        </Router>
-      ) : (
-        <Router>
-          <LandingPage />
-        </Router>
-      )}
+      <Router>
+        <Routes>
+          {isDashboard ? (
+            <Route path="/*" element={<Dashboard />} />
+          ) : (
+            <>
+              <Route path={`${ROUTE_CONSTANTS.DASHBOARD}/*`} element={<Dashboard />} />
+              <Route path="/*" element={<LandingPage />} />
+            </>
+          )}
+        </Routes>
+      </Router>
     </div>
   );
 }
